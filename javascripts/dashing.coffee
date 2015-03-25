@@ -51,8 +51,13 @@ class Dashing.Widget extends Batman.View
     if updatedAt = @get('updatedAt')
       timestamp = new Date(updatedAt)
       hours = timestamp.getHours()
+      midday = 'am'
+      if hours >11
+        midday = "pm" 
+      if hours > 12 
+        hours = hours-12 
       minutes = ("0" + timestamp.getMinutes()).slice(-2)
-      "Last updated at #{hours}:#{minutes}"
+      "Last updated at #{hours}:#{minutes} #{midday}"
 
   @::on 'ready', ->
     Dashing.Widget.fire 'ready'
